@@ -1,6 +1,6 @@
 TODO:
   ✔ Add prefetch https://htmx.org/extensions/preload/ @done(24-05-13 21:43)
-  ☐ Sort out Animate.css - incoming animation is working but how to add outoging?
+  ☐ Sort out Animate.css - incoming animation is working but how to add outoging? And issue when scrolled down page and moving back to top
   ✔ There is a horrible flash of unstyled content before CSS loads @done(24-05-14 20:40)
   ✔ ScrollTo doesn't work yet @done(24-05-14 20:50)
   ✔ I think I can move repeated hx- attributes to a parent, try this in nav @done(24-05-14 19:55)
