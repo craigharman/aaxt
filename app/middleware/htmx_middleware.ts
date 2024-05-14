@@ -53,7 +53,6 @@ export default class HtmxMiddleware {
           components += page.querySelector(target)?.removeWhitespace().toString() || ''
         })
         response.header('HX-Reselect', targets)
-        console.log(targets, components)
       }
 
       html += components
