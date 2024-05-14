@@ -1,4 +1,4 @@
-import '../css/app.css'
+// import '../css/app.css'
 import 'animate.css'
 
 import Alpine from 'alpinejs'

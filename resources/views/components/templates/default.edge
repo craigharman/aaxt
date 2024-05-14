@@ -7,7 +7,7 @@
     <title>{{ title || 'Default title' }}</title>
     <meta name="description" content="{{ description || '' }}">
 
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
   </head>
 
   <body hx-ext="preload">

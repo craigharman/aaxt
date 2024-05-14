@@ -40,8 +40,8 @@
             </g>
           </svg>
         </a>
-        <div preload hx-select-oob="#navigation,#content-wrapper" hx-vals='{"elements": "#navigation,#content-wrapper"}'
-          hx-trigger="click" class=" flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0
+        <div preload hx-swap="outerHTML show:window:top" hx-select-oob="#navigation,#content-wrapper"
+          hx-vals='{"elements": "#navigation,#content-wrapper"}' hx-trigger="click" class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0
           md:flex-row md:items-center">
           <a href="/" hx-get="/" hx-vals='{"elements": "#navigation,#content-wrapper"}' hx-replace-url="/"
             class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left {{ request.url() === '/' ? 'text-black' : 'text-gray-700' }} md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">Home</a>
