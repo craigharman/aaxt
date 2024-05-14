@@ -19,7 +19,7 @@
       <div
         class="flex-col w-full h-auto overflow-hidden bg-white rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row">
         <a href="/" hx-get="/" hx-trigger="click" hx-select-oob="#navigation,#content-wrapper"
-          hx-vals='{"elements": "#navigation,#content-wrapper"}'
+          hx-vals='{"elements": "#navigation,#content-wrapper"}' hx-replace-url="true"
           class="inline-flex items-center block w-auto h-16 px-6 text-xl font-black leading-none text-gray-900 md:hidden">
           <svg class="w-auto h-5" viewBox="0 0 355 99" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -41,16 +41,15 @@
           </svg>
         </a>
         <div preload hx-select-oob="#navigation,#content-wrapper" hx-vals='{"elements": "#navigation,#content-wrapper"}'
-          hx-trigger="click
-          class=" flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0
+          hx-trigger="click" class=" flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0
           md:flex-row md:items-center">
-          <a href="/" hx-get="/" hx-vals='{"elements": "#navigation,#content-wrapper"}'
+          <a href="/" hx-get="/" hx-vals='{"elements": "#navigation,#content-wrapper"}' hx-replace-url="/"
             class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left {{ request.url() === '/' ? 'text-black' : 'text-gray-700' }} md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">Home</a>
-          <a href="/features" hx-get="/features"
+          <a href="/features" hx-get="/features" hx-replace-url="/features"
             class="inline-block w-full py-2 mx-0 font-medium text-left {{ request.url() === '/features' ? 'text-black' : 'text-gray-700' }} md:w-auto md:px-0 md:mx-2 hover:text-black lg:mx-3 md:text-center">Features</a>
-          <a href="/blog" hx-get="/blog"
+          <a href="/blog" hx-get="/blog" hx-replace-url="/blog"
             class="inline-block w-full py-2 mx-0 font-medium text-left {{ request.url() === '/blog' ? 'text-black' : 'text-gray-700' }} md:w-auto md:px-0 md:mx-2 hover:text-black lg:mx-3 md:text-center">Blog</a>
-          <a href="/contact" hx-get="/contact"
+          <a href="/contact" hx-get="/contact" hx-replace-url="/contact"
             class="inline-block w-full py-2 mx-0 font-medium text-left {{ request.url() === '/contact' ? 'text-black' : 'text-gray-700' }} md:w-auto md:px-0 md:mx-2 hover:text-black lg:mx-3 md:text-center">Contact</a>
           <a href="#_"
             class="absolute top-0 left-0 hidden py-2 mt-6 ml-10 mr-2 text-gray-600 lg:inline-block md:mt-0 md:ml-2 lg:mx-3 md:relative">

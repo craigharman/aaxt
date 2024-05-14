@@ -4,5 +4,5 @@ TODO:
   ☐ There is a horrible flash of unstyled content before CSS loads
   ☐ ScrollTo doesn't work yet
   ✔ I think I can move repeated hx- attributes to a parent, try this in nav @done(24-05-14 19:55)
-  ☐ Get the button on contacts working
+  ✔ Get the button on contacts working @done(24-05-14 20:37)
   ✔ Change default swap behaviour to outerHTML @done(24-05-14 19:55)

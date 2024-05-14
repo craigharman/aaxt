@@ -14,7 +14,7 @@ export default class HtmxMiddleware {
 
       // A specific target has been selected
       if ('hx-target' in headers) {
-        targets = ctx.request.headers()['hx-target']!.toString()
+        targets = `#${ctx.request.headers()['hx-target']!.toString()}`
       }
 
       // Specific out of bounds headers have been requested
@@ -37,7 +37,7 @@ export default class HtmxMiddleware {
     const response = ctx.response
     if (response.hasContent && isHTMLXRequest) {
       // Set the page URL path
-      response.header('Hx-Push-Url', ctx.request.url())
+      // response.header('Hx-Push-Url', ctx.request.url()) // Now doing this via the client
 
       let html = ''
       const page = parse(response.content![0])
@@ -53,6 +53,7 @@ export default class HtmxMiddleware {
           components += page.querySelector(target)?.removeWhitespace().toString() || ''
         })
         response.header('HX-Reselect', targets)
+        console.log(targets, components)
       }
 
       html += components
