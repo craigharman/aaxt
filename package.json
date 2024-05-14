@@ -63,6 +63,7 @@
     "@adonisjs/vite": "^2.0.2",
     "@vinejs/vine": "^2.0.0",
     "alpinejs": "^3.13.10",
+    "animate.css": "^4.1.1",
     "edge.js": "^6.0.2",
     "htmx.org": "^1.9.12",
     "node-html-parser": "^6.1.13",

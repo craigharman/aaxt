@@ -10,9 +10,9 @@
     @vite(['resources/js/app.js'])
   </head>
 
-  <body>
+  <body hx-ext="preload">
     @!navigation()
-    <div id="content-wrapper" data-mata-enter="bounceInLeft" data-mata-leave="bounceOutLeft">
+    <div id="content-wrapper" class="animate__animated animate__bounceInLeft" data-mata-leave="bounceOutLeft">
       {{{ await $slots.main() }}}
     </div>
   </body>

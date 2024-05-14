@@ -7,7 +7,6 @@ export default class HtmxMiddleware {
     /** Check if we will return components or the whole page? */
     let isHTMLXRequest = false
     let targets: string | undefined
-    console.log(ctx.request.headers())
     if ('hx-request' in ctx.request.headers()) {
       isHTMLXRequest = true
 
