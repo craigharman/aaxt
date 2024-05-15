@@ -43,7 +43,7 @@
         <div preload hx-swap="outerHTML show:window:top transition:true" hx-select-oob="#navigation,#content-wrapper"
           hx-vals='{"elements": "#navigation,#content-wrapper"}' hx-trigger="click" class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0
           md:flex-row md:items-center">
-          <a href="/" hx-get="/" hx-vals='{"elements": "#navigation,#content-wrapper"}' hx-push-url="/"
+          <a href="/" hx-get="/" hx-push-url="/"
             class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left {{ request.url() === '/' ? 'text-black' : 'text-gray-700' }} md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">Home</a>
           <a href="/features" hx-get="/features" hx-push-url="/features"
             class="inline-block w-full py-2 mx-0 font-medium text-left {{ request.url() === '/features' ? 'text-black' : 'text-gray-700' }} md:w-auto md:px-0 md:mx-2 hover:text-black lg:mx-3 md:text-center">Features</a>
