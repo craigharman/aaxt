@@ -7,4 +7,4 @@ TODO:
   ✔ I think I can move repeated hx- attributes to a parent, try this in nav @done(24-05-14 19:55)
   ✔ Get the button on contacts working @done(24-05-14 20:37)
   ✔ Change default swap behaviour to outerHTML @done(24-05-14 19:55)
-  ☐ Try Animate.css transitions with [Alpine Transitions](https://alpinejs.dev/directives/transition#applying-css-classes)
+  ✔ Don't reload page if current url @done(24-05-15 18:16)
