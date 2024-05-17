@@ -22,11 +22,12 @@ To create a new AAXT project run:
 
 ```bash
 npx degit craigharman/aaxt my-new-project
+cd my new project
+npm i
+npm run dev
 ```
 
 This will provide you with an AdonisJS project preconfigured with AlpineJS, HtmlX and Tailwind and with a few other bonus niceties to connect these technologies together. **It is recommended that you have a basic understanding of HTMX and AlpineJS before you start but it is not required, and hopefully AAXT is easy enough to get up and running with.**
-
-# TODO: Provide a diagram of how it works
 
 AAXT uses Adonis's server side rendering to generate HTML pages but then caches to them to give your website/application the speed of a static rendered site. The steps to create yuor website content can be simplified to:
 
