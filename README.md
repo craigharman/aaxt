@@ -1,6 +1,38 @@
 # AAXT
 
-AdonisJS AlpineJS htmlX and Tailwind.
+The complete web stack including AdonisJS AlpineJS htmlX and Tailwind.
+
+## Features
+
+- Alpine, HTMX and Tailwind pre-installed and configured
+- AdonisJS middleware to automatically send HTML fragments for HTMX requests
+- Same URL for whole page vs required fragments
+- Browser based caching middleware using etags and vary
+- HTMX extension `no-load` to not request current page
+- Edge templating engine
+
+### Optional
+
+- Animate.css for transitions
+- [Penguin UI](https://www.penguinui.com/), [PineUI](https://devdojo.com/pines), [Shoelace](https://shoelace.style/) or [FrankenUI](https://www.franken-ui.dev/) CSS component libraries.
+
+## Usage
+
+To create a new AAXT project run:
+
+```bash
+npx degit craigharman/aaxt my-new-project
+```
+
+This will provide you with an AdonisJS project preconfigured with AlpineJS, HtmlX and Tailwind and with a few other bonus niceties to connect these technologies together.
+
+AAXT uses Adonis's server side rendering to generate HTML pages but then caches to them to give your website/application the speed of a static rendered site. The steps to create yuor website content can be simplified to:
+
+1. Create a new server-side page template in `/resources/views/pages`
+2. Wrap the content in the AAXT default page template via `@templates.default({ title: 'Page title', description: 'Description for home goes here' })` 
+3. Add HTMX requests to the page (or page components such as navigation bar) that will then request HTML Element ids from the server
+
+That's it! Requests are automatically cached client and server side to reduce server resource usage and network requests. A basic demonstration is included to get you started and each step is explained in more detail below.
 
 ## Transitions
 

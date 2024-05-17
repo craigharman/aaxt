@@ -61,10 +61,12 @@
     "@adonisjs/shield": "^8.1.1",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^2.0.2",
+    "@rollup/plugin-inject": "^5.0.5",
     "@vinejs/vine": "^2.0.0",
     "alpinejs": "^3.13.10",
     "animate.css": "^4.1.1",
     "edge.js": "^6.0.2",
+    "htmx-ext-no-load": "^1.0.0",
     "htmx.org": "^1.9.12",
     "node-html-parser": "^6.1.13",
     "reflect-metadata": "^0.2.2"

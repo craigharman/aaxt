@@ -8,3 +8,7 @@ TODO:
   ✔ Get the button on contacts working @done(24-05-14 20:37)
   ✔ Change default swap behaviour to outerHTML @done(24-05-14 19:55)
   ✔ Don't reload page if current url @done(24-05-15 18:16)
+  ☐ Allow install of shoelace, pineUI or penguinUI
+  ☐ Finish README.md with folder structure overview
+  ☐ Add AdonisJS server side caching
+  ☐ If request is a hx-boost, send whole page rather than fragment
