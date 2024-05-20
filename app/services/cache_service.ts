@@ -1,6 +1,6 @@
 import app from '@adonisjs/core/services/app'
 
-class CacheService {
+export class CacheService {
   cache: { [key: string]: any } = {}
 
   set(key: string, value: any) {
@@ -11,16 +11,10 @@ class CacheService {
   }
 }
 
-// app.container.bind('cache', function () {
-//   return new CacheService()
-// })
+app.container.bind('cache', function () {
+  return new CacheService()
+})
 
-// const cache = await app.container.singleton(CacheService)
-
-// const cache = await app.container.singleton('cache', function () {
-//   return new CacheService()
-// })
-
-const cache = await app.container.make(CacheService)
+const cache = await app.container.make('cache')
 
 export { cache as default }
