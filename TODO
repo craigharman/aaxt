@@ -12,3 +12,4 @@ TODO:
   ✔ Finish README.md with folder structure overview @done(24-05-17 20:57)
   ☐ Add AdonisJS server side caching https://bentocache.dev/docs/introduction
   ☐ If request is a hx-boost, send whole page rather than fragment
+  ☐ Enable and fix browser_cache_middleware (see kernel.ts)

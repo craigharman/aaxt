@@ -1,5 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
+import cache from '#services/cache_service'
+import { md5 } from '../lib/md5.js'
 import { parse } from 'node-html-parser'
 
 export default class HtmxMiddleware {
@@ -7,6 +9,9 @@ export default class HtmxMiddleware {
     /** Check if we will return components or the whole page? */
     let isHTMLXRequest = false
     let targets: string | undefined
+
+    let cacheKey = ctx.route?.pattern
+
     if ('hx-request' in ctx.request.headers()) {
       isHTMLXRequest = true
 
@@ -25,6 +30,13 @@ export default class HtmxMiddleware {
       if (!targets) {
         throw new Error('Missing hx-target or hx-select-oob')
       }
+      cacheKey += targets
+    }
+    cacheKey = md5(cacheKey)
+    const cachedHTML = cache.get(cacheKey)
+    if (cachedHTML) {
+      console.log('Getting from cache!')
+      ctx.response.send(cachedHTML)
     }
 
     /**
@@ -56,6 +68,7 @@ export default class HtmxMiddleware {
       }
 
       html += components
+      cache.set(cacheKey, html)
 
       response.send(html)
     }

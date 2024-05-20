@@ -4,7 +4,6 @@ import { md5 } from '../lib/md5.js'
 
 export default class BrowserCacheControlMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
-    console.log('body', ctx.response.getBody())
     const eTag = md5(ctx.response.getBody()) // Create a hash based on the page content
     /**
      * Append some Cache-Control related headers
