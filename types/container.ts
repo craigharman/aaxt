@@ -1,7 +1,7 @@
-import { CacheService } from '../app/services/cache_service.js'
+import { BentoCache, bentostore } from 'bentocache'
 
 declare module '@adonisjs/core/types' {
   interface ContainerBindings {
-    cache: CacheService
+    cache: BentoCache<Record<string, typeof bentostore>>
   }
 }
