@@ -10,6 +10,7 @@ TODO:
   ✔ Don't reload page if current url @done(24-05-15 18:16)
   ☐ Allow install of shoelace, pineUI or penguinUI
   ✔ Finish README.md with folder structure overview @done(24-05-17 20:57)
-  ☐ Add AdonisJS server side caching https://bentocache.dev/docs/introduction
+  ✔ Add AdonisJS server side caching https://bentocache.dev/docs/introduction @done(24-05-20 18:47)
   ☐ If request is a hx-boost, send whole page rather than fragment
   ☐ Enable and fix browser_cache_middleware (see kernel.ts)
+  ☐ Use defineConfig and merge default config for config/cache.ts

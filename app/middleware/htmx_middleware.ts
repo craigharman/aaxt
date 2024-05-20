@@ -32,13 +32,9 @@ export default class HtmxMiddleware {
       }
       cacheKey += targets
     }
-    console.log('Cache key unhashed', cacheKey)
     cacheKey = md5(cacheKey)
-    console.log('Cache key hashed', cacheKey)
     const cachedHTML = await cache.get(cacheKey)
-    console.log('Cached data', cachedHTML)
     if (cachedHTML) {
-      console.log('Getting from cache!')
       return ctx.response.send(cachedHTML)
     }
 
@@ -71,7 +67,6 @@ export default class HtmxMiddleware {
       }
 
       html += components
-      console.log('Setting cache')
       await cache.set(cacheKey, html)
 
       response.send(html)

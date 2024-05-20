@@ -10,7 +10,7 @@ export default {
   stores: {
     // A first cache store named "axxtCache" using
     // only L1 in-memory cache
-    axxtCache: bentostore().useL1Layer(memoryDriver({ maxSize: 10_000 })),
+    axxtCache: bentostore().useL1Layer(memoryDriver()),
   },
   ttl: '1h',
   gracePeriod: {

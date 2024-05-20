@@ -7,8 +7,11 @@ export default class AppProvider {
     this.app.container.bind('cache', async (resolver) => {
       const configService = await resolver.make('config')
       const cacheConfig = configService.get<any>('cache')
-      console.log(cacheConfig)
       return new BentoCache(cacheConfig)
     })
+  }
+  boot() {
+    // Could also do this but doing in a service instead
+    // this.app.container.make('cache')
   }
 }
