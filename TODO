@@ -12,5 +12,6 @@ TODO:
   ✔ Finish README.md with folder structure overview @done(24-05-17 20:57)
   ✔ Add AdonisJS server side caching https://bentocache.dev/docs/introduction @done(24-05-20 18:47)
   ☐ If request is a hx-boost, send whole page rather than fragment
-  ☐ Enable and fix browser_cache_middleware (see kernel.ts)
+  ✔ Enable and fix browser_cache_middleware (see kernel.ts) @done(24-05-20 20:36)
   ☐ Use defineConfig and merge default config for config/cache.ts
+  ☐ Is it still rendering templates from the middleware? Seems to be getting back to browser_cache middleware somehow

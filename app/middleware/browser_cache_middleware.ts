@@ -4,6 +4,10 @@ import { md5 } from '../lib/md5.js'
 
 export default class BrowserCacheControlMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
+    /**
+     * Call next method in the pipeline and return its output
+     */
+    const output = await next()
     const eTag = md5(ctx.response.getBody()) // Create a hash based on the page content
     /**
      * Append some Cache-Control related headers
@@ -15,11 +19,6 @@ export default class BrowserCacheControlMiddleware {
      * Server renders the full HTML when the HX-Request header is missing or false, and it renders a fragment of that HTML when HX-Request: true
      */
     ctx.response.append('Vary', 'HX-Request')
-
-    /**
-     * Call next method in the pipeline and return its output
-     */
-    const output = await next()
     return output
   }
 }
