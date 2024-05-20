@@ -1,10 +1,11 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
-import crypto from 'node:crypto'
+import { md5 } from '../lib/md5.js'
 
-export default class CacheControlMiddleware {
+export default class BrowserCacheControlMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
-    const eTag = crypto.createHash('md5', ctx.response.getBody()).digest('hex') // Create a hash based on the page content
+    console.log('body', ctx.response.getBody())
+    const eTag = md5(ctx.response.getBody()) // Create a hash based on the page content
     /**
      * Append some Cache-Control related headers
      */

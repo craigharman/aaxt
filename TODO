@@ -9,6 +9,6 @@ TODO:
   ✔ Change default swap behaviour to outerHTML @done(24-05-14 19:55)
   ✔ Don't reload page if current url @done(24-05-15 18:16)
   ☐ Allow install of shoelace, pineUI or penguinUI
-  ☐ Finish README.md with folder structure overview
-  ☐ Add AdonisJS server side caching
+  ✔ Finish README.md with folder structure overview @done(24-05-17 20:57)
+  ☐ Add AdonisJS server side caching https://bentocache.dev/docs/introduction
   ☐ If request is a hx-boost, send whole page rather than fragment

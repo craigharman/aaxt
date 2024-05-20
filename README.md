@@ -7,7 +7,7 @@ The complete web stack including AdonisJS AlpineJS htmlX and Tailwind.
 - Alpine, HTMX and Tailwind pre-installed and configured
 - AdonisJS middleware to automatically send HTML fragments for HTMX requests
 - Same URL for whole page vs required fragments
-- Browser based caching middleware using etags and vary
+- Server and Browser caching enabled by default
 - HTMX extension `no-load` to not request current page
 - Edge templating engine
 
@@ -95,6 +95,12 @@ If you want to load individual HTML components or fragments simply add a route t
 </button>
 <div id="quote">This text will be replaced with whatever returns from the /quote endpoint.</div>
 ```
+
+## Caching
+
+Both server side and browser side caching are configured via AdonisJS Middlewares. They are configured with "sane defaults" whereby the server should be serving cached versions of your HTML a majority of the time. However you are able to configure server side caching via the `./config/cache.ts` file which takes a [BentoCache](https://bentocache.dev) configuration.
+
+Server caching of edge templates is done on a URL + HTMX requested targets basis. This has the advantage of quicker response times but at the expense of caching more duplicate data. If storage is a concern you can remove the `server_cache_middleware` from `kernel.ts` and instead just cache the whole page output by editing `htmx_middleware.ts` to retrieve the page from cache.
 
 ## Transitions
 
