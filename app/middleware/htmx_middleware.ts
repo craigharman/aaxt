@@ -35,6 +35,7 @@ export default class HtmxMiddleware {
     cacheKey = md5(cacheKey)
     const cachedHTML = await cache.get(cacheKey)
     if (cachedHTML) {
+      // End request here so we don't end up building the template again
       return ctx.response.send(cachedHTML)
     }
 
