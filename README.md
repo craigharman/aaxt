@@ -22,7 +22,7 @@ To create a new AAXT project run:
 
 ```bash
 npx degit craigharman/aaxt my-new-project
-cd my new project
+cd my-new-project
 npm i
 npm run dev
 ```
