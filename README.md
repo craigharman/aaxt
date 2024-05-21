@@ -85,6 +85,10 @@ Here we have a standard `a` element with an `href` - we keep this to allow the u
 
 > Note that HTMX allows us to hoist any repeated attributes to the parent element so we don't need to repeat them on every link. That is what we have done in `navigation.edge`.
 
+#### Using hx-boost
+
+You may see all the attributes above and think, its much easier to just use [hx-boost](https://htmx.org/attributes/hx-boost/). While AAXT certainly supports this the disadvantage is you will be increasing the amount of traffic sent between the server and browser, as hx-boost requires the entire page. If this is not a consideration for your setup, then you can use `hx-boost` out of the box as described in the [HTMX documentation](https://htmx.org/attributes/hx-boost/).
+
 ## Requesting HTML Fragments (or components)
 
 If you want to load individual HTML components or fragments simply add a route to `routes.ts` that renders the component explcitly via `` then use HTMX in the page view to request it:

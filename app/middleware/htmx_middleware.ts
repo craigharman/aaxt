@@ -12,7 +12,7 @@ export default class HtmxMiddleware {
 
     let cacheKey = ctx.route?.pattern
 
-    if ('hx-request' in ctx.request.headers()) {
+    if ('hx-request' in ctx.request.headers() && !('hx-boosted' in ctx.request.headers())) {
       isHTMLXRequest = true
 
       const headers = ctx.request.headers()
