@@ -7,7 +7,7 @@ The complete web stack including AdonisJS AlpineJS htmlX and Tailwind.
 - Alpine, HTMX and Tailwind pre-installed and configured
 - AdonisJS middleware to automatically send HTML fragments for HTMX requests
 - Same URL for whole page vs required fragments
-- Server and Browser caching enabled by default
+- Server (using [Bentocache](https://bentocache.dev)) and Browser (using ETag) caching enabled by default
 - HTMX extension `no-load` to not request current page
 - Edge templating engine
 

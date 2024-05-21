@@ -36,7 +36,7 @@ export default class HtmxMiddleware {
     const cachedHTML = await cache.get(cacheKey)
     if (cachedHTML) {
       // End request here so we don't end up building the template again
-      return ctx.response.send(cachedHTML)
+      return ctx.response.status(200).send(cachedHTML)
     }
 
     /**
@@ -70,7 +70,7 @@ export default class HtmxMiddleware {
       html += components
       await cache.set(cacheKey, html)
 
-      response.send(html)
+      return response.status(200).send(html)
     }
 
     return response
