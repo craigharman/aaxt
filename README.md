@@ -7,7 +7,7 @@ The complete web stack including AdonisJS AlpineJS htmlX and Tailwind.
 - Alpine, HTMX and Tailwind pre-installed and configured
 - AdonisJS middleware to automatically send HTML fragments for HTMX requests
 - Same URL for whole page vs required fragments
-- Browser based caching middleware using etags and vary
+- Server (using [Bentocache](https://bentocache.dev)) and Browser (using ETag) caching enabled by default
 - HTMX extension `no-load` to not request current page
 - Edge templating engine
 
@@ -85,6 +85,10 @@ Here we have a standard `a` element with an `href` - we keep this to allow the u
 
 > Note that HTMX allows us to hoist any repeated attributes to the parent element so we don't need to repeat them on every link. That is what we have done in `navigation.edge`.
 
+#### Using hx-boost
+
+You may see all the attributes above and think, its much easier to just use [hx-boost](https://htmx.org/attributes/hx-boost/). While AAXT certainly supports this the disadvantage is you will be increasing the amount of traffic sent between the server and browser, as hx-boost requires the entire page. If this is not a consideration for your setup, then you can use `hx-boost` out of the box as described in the [HTMX documentation](https://htmx.org/attributes/hx-boost/).
+
 ## Requesting HTML Fragments (or components)
 
 If you want to load individual HTML components or fragments simply add a route to `routes.ts` that renders the component explcitly via `` then use HTMX in the page view to request it:
@@ -95,6 +99,12 @@ If you want to load individual HTML components or fragments simply add a route t
 </button>
 <div id="quote">This text will be replaced with whatever returns from the /quote endpoint.</div>
 ```
+
+## Caching
+
+Both server side and browser side caching are configured via AdonisJS Middlewares. They are configured with "sane defaults" whereby the server should be serving cached versions of your HTML a majority of the time. However you are able to configure server side caching via the `./config/cache.ts` file which takes a [BentoCache](https://bentocache.dev) configuration.
+
+Server caching of edge templates is done on a URL + HTMX requested targets basis. This has the advantage of quicker response times but at the expense of caching more duplicate data. If storage is a concern you can remove the `server_cache_middleware` from `kernel.ts` and instead just cache the whole page output by editing `htmx_middleware.ts` to retrieve the page from cache.
 
 ## Transitions
 
