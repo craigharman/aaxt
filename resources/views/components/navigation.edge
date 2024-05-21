@@ -3,13 +3,7 @@
     class="container relative flex flex-wrap items-center justify-between h-24 mx-auto overflow-hidden font-medium border-b border-gray-200 md:overflow-visible lg:justify-center sm:px-4 md:px-2 lg:px-0">
     <div class="flex items-center justify-start w-1/4 h-full pr-4">
       <a href="#_" class="flex items-center py-4 space-x-2 font-extrabold text-gray-900 md:py-0">
-        <span class="flex items-center justify-center w-8 h-8 text-white bg-gray-900 rounded-full">
-          <svg class="w-auto h-5 -translate-y-px" viewBox="0 0 69 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="m31.2 12.2-3.9 12.3-13.4.5-13.4.5 10.7 7.7L21.8 41l-3.9 12.1c-2.2 6.7-3.8 12.4-3.6 12.5.2.2 5-3 10.6-7.1 5.7-4.1 10.9-7.2 11.5-6.8.6.4 5.3 3.8 10.5 7.5 5.2 3.8 9.6 6.6 9.8 6.4.2-.2-1.4-5.8-3.6-12.5l-3.9-12.2 8.5-6.2c14.7-10.6 14.8-9.6-.4-9.7H44.2L40 12.5C37.7 5.6 35.7 0 35.5 0c-.3 0-2.2 5.5-4.3 12.2Z"
-              fill="currentColor" />
-          </svg>
-        </span>
+        <img src="/aaxt-logo.svg" class="w-24 h-24 -translate-y-px" alt="AAXT Logo">
         <span>AAXT</span>
       </a>
     </div>
@@ -41,7 +35,7 @@
           </svg>
         </a>
         <div preload hx-select-oob="#navigation,#content-wrapper" hx-vals='{"elements": "#navigation,#content-wrapper"}'
-          hx-trigger="click" hx-ext="no-load" class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0
+          hx-trigger="click" hx-ext="no-load" hx-swap="outerHTML show:window:top transition:true" class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0
           md:flex-row md:items-center">
           <a href="/" hx-get="/" hx-push-url="/"
             class="inline-block w-full py-2 mx-0 ml-6 font-medium text-left {{ request.url() === '/' ? 'text-black' : 'text-gray-700' }} md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center">Home</a>
