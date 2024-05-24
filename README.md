@@ -24,6 +24,7 @@ To create a new AAXT project run:
 npx degit craigharman/aaxt my-new-project
 cd my-new-project
 npm i
+cp .env.example .env
 npm run dev
 ```
 
