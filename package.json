@@ -1,7 +1,7 @@
 {
   "name": "aaxt",
   "description": "Meta framework AdonisJS Alpine htmlX and Tailwind. Also includes Pine UI components",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "license": "UNLICENSED",
