@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
 import cache from '#services/cache_service'
+import env from '#start/env'
 import { md5 } from '../lib/md5.js'
 import { parse } from 'node-html-parser'
 
@@ -11,15 +12,14 @@ export default class HtmxMiddleware {
     let targets: string | undefined
 
     let cacheKey = ctx.route?.pattern
+    const headers = ctx.request.headers()
 
     if ('hx-request' in ctx.request.headers() && !('hx-boosted' in ctx.request.headers())) {
       isHTMLXRequest = true
 
-      const headers = ctx.request.headers()
-
       // A specific target has been selected
       if ('hx-target' in headers) {
-        targets = `#${ctx.request.headers()['hx-target']!.toString()}`
+        targets = `#${headers['hx-target']!.toString()}`
       }
 
       // Specific out of bounds headers have been requested
@@ -32,11 +32,14 @@ export default class HtmxMiddleware {
       }
       cacheKey += targets
     }
-    cacheKey = md5(cacheKey)
-    const cachedHTML = await cache.get(cacheKey)
-    if (cachedHTML) {
-      // End request here so we don't end up building the template again
-      return ctx.response.status(200).send(cachedHTML)
+    if (env.get('NODE_ENV') !== 'development' && !('hx-no-cache' in headers)) {
+      // Don't cache during development
+      cacheKey = md5(cacheKey)
+      const cachedHTML = await cache.get(cacheKey)
+      if (cachedHTML) {
+        // End request here so we don't end up building the template again
+        return ctx.response.status(200).send(cachedHTML)
+      }
     }
 
     /**
@@ -68,7 +71,10 @@ export default class HtmxMiddleware {
       }
 
       html += components
-      await cache.set(cacheKey, html)
+      if (env.get('NODE_ENV') !== 'development' && !('hx-no-cache' in headers)) {
+        // Don't cache during development
+        await cache.set(cacheKey!, html)
+      }
 
       return response.status(200).send(html)
     }

@@ -67,7 +67,8 @@
     "animate.css": "^4.1.1",
     "bentocache": "^1.0.0-beta.9",
     "edge.js": "^6.0.2",
-    "htmx-ext-no-load": "^1.0.0",
+    "htmx-ext-no-cache": "^1.0.2",
+    "htmx-ext-no-load": "^1.0.1",
     "htmx.org": "^1.9.12",
     "node-html-parser": "^6.1.13",
     "reflect-metadata": "^0.2.2"

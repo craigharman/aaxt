@@ -10,6 +10,7 @@ The complete web stack including AdonisJS AlpineJS htmlX and Tailwind.
 - Server (using [Bentocache](https://bentocache.dev)) and Browser (using ETag) caching enabled by default
 - HTMX extension `no-load` to not request current page
 - Edge templating engine
+- Selectively cache requests
 
 ## Usage
 
