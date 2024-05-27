@@ -1,6 +1,7 @@
 // import '../css/app.css'
 import 'animate.css'
 import 'htmx-ext-no-load'
+import 'htmx-ext-no-cache'
 
 import Alpine from 'alpinejs'
 import htmx from 'htmx.org'
