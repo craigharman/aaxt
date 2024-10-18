@@ -1,9 +1,18 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
-import cache from '#services/cache_service'
+import cache from '@adonisjs/cache/services/main'
 import env from '#start/env'
-import { md5 } from '../lib/md5.js'
 import { parse } from 'node-html-parser'
+import app from '@adonisjs/core/services/app'
+import crypto from 'node:crypto'
+
+export const md5 = (toEncode: any): string => {
+  return crypto.createHash('md5').update(toEncode.toString()).digest('hex') // Create a hash based on the page content
+}
+
+const config = {
+  serverCache: app.inProduction,
+}
 
 export default class HtmxMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
@@ -11,30 +20,29 @@ export default class HtmxMiddleware {
     let isHTMLXRequest = false
     let targets: string | undefined
 
-    let cacheKey = ctx.route?.pattern
+    let cacheKey: string | undefined
     const headers = ctx.request.headers()
 
-    if ('hx-request' in ctx.request.headers() && !('hx-boosted' in ctx.request.headers())) {
+    if ('hx-request' in headers && !('hx-boosted' in headers)) {
       isHTMLXRequest = true
 
       // A specific target has been selected
       if ('hx-target' in headers) {
         targets = `#${headers['hx-target']!.toString()}`
-      }
+      } // TODO: What about hx-target-error
 
       // Specific out of bounds headers have been requested
       if (ctx.request.qs()['elements']) {
         targets = ctx.request.qs()['elements']
       }
-
-      if (!targets) {
-        throw new Error('Missing hx-target or hx-select-oob')
-      }
-      cacheKey += targets
     }
-    if (env.get('NODE_ENV') !== 'development' && !('hx-no-cache' in headers)) {
+    if (
+      config.serverCache &&
+      env.get('NODE_ENV') !== 'development' &&
+      !('hx-no-cache' in headers)
+    ) {
       // Don't cache during development
-      cacheKey = md5(cacheKey)
+      cacheKey = md5(ctx.route?.pattern || '' + targets)
       const cachedHTML = await cache.get(cacheKey)
       if (cachedHTML) {
         // End request here so we don't end up building the template again
@@ -50,10 +58,22 @@ export default class HtmxMiddleware {
     await next()
 
     const response = ctx.response
-    if (response.hasContent && isHTMLXRequest) {
+    const responseHeaders = ctx.response.getHeaders()
+    if ('location' in responseHeaders && isHTMLXRequest) {
+      // If Adonis has requested a page redirect, we should do it the "HTMX way"
+      return response.removeHeader('location').append('hx-redirect', responseHeaders.location!)
+    }
+    if (
+      response.getStatus() >= 200 &&
+      response.getStatus() < 300 &&
+      response.hasContent &&
+      isHTMLXRequest &&
+      !('hx-redirect' in responseHeaders) && // If we are redirecting we don't mess with the response
+      (!('content-type' in responseHeaders) ||
+        responseHeaders['content-type'] !== 'application/json') // Check if 'content-type' exists and is not 'application/json'
+    ) {
       // Set the page URL path
       // response.header('Hx-Push-Url', ctx.request.url()) // Now doing this via the client
-
       let html = ''
       const page = parse(response.content![0])
       const title = page.querySelector('title')
@@ -71,12 +91,19 @@ export default class HtmxMiddleware {
       }
 
       html += components
-      if (env.get('NODE_ENV') !== 'development' && !('hx-no-cache' in headers)) {
-        // Don't cache during development
-        await cache.set(cacheKey!, html)
+
+      if (
+        config.serverCache &&
+        ctx.request.method() === 'GET' && // We don't want to cache data that can send validation etc. like POST
+        env.get('NODE_ENV') !== 'development' &&
+        !('hx-no-cache' in headers)
+      ) {
+        if (cacheKey) {
+          await cache.set(cacheKey, html)
+        }
       }
 
-      return response.status(200).send(html)
+      return response.send(html)
     }
 
     return response
